@@ -15,6 +15,8 @@
 
 ## Technologies used
 
+## Screenshots of project
+
 ## Group Members
 
 Arturo Arce
@@ -36,5 +38,3 @@ https://github.com/Garendemirdogen/project-1.git
 ## Live URL Link
 
 https://garendemirdogen.github.io/project-1/
-
-## Screenshots of project
