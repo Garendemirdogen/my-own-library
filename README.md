@@ -11,6 +11,10 @@
 - [ ] Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
 - [ ] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
+## Description
+
+## Technologies used
+
 ## Group Members
 
 Arturo Arce
@@ -31,4 +35,6 @@ https://github.com/Garendemirdogen/project-1.git
 
 ## Live URL Link
 
-## Screenshots of document
+https://garendemirdogen.github.io/project-1/
+
+## Screenshots of project
