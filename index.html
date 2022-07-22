@@ -14,24 +14,38 @@
 
   <body>
     <div id="selector">
-      <h2>Add Book or Music</h2>
-      <h2>Title</h2>
-      <h2>Who is the Author or Artist?</h2>
-      <h2>
-        Date Added
-        <!--Automatic Date Function?-->
-      </h2>
+      <select name="Books or Music" id="dropdown">
+        <option value="none" selected="selected">-- choose one --</option>
+        <option value="Books">Books</option>
+        <option value="Music">Music</option>
+      </select>
+      <input type="text" placeholder="Title" />
+      <input type="text" placeholder="Who is the Author or Artist?" />
+      <!--Automatic Date Function?-->
+      <input type="text" placeholder="Date Added" />
       <button>Add to Library</button>
     </div>
-    <div class="Library">
-      <h1>My Music</h1>
-      <div>Sort By</div>
-      <div><!--Saved Music Content--></div>
-    </div>
-    <div class="Library">
-      <h1>My Books</h1>
-      <div>Sort By</div>
-      <div><!--Saved Music Content--></div>
+    <div>
+      <div class="Library">
+        <h1>My Music</h1>
+        <select name="sort-by" id="dropdown">
+          <option value="none" selected="selected">-- sort by --</option>
+          <option value="title">Title</option>
+          <option value="artist">Artist</option>
+          <option value="date-added">Date Added</option>
+        </select>
+        <!-- <div>Saved Music Content</div> -->
+      </div>
+      <div class="Library">
+        <h1>My Books</h1>
+        <select name="sort-by" id="dropdown">
+          <option value="none" selected="selected">-- sort by --</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="date-added">Date Added</option>
+        </select>
+        <!-- <div>Saved Music Content</div> -->
+      </div>
     </div>
   </body>
 </html>
