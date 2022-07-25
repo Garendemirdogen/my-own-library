@@ -54,7 +54,7 @@ $(document).ready(function () {
         movieData.prepend(movieCard);
       }
       // Modal to alert user that is not a valid movie title
-      // alert for now until I figure out the modals
+      // alert for now until I figure out the modals.
       else {
         alert("ERROR: No results found for " + movie);
         var errorMovieIndex = movies.indexOf(movie);
