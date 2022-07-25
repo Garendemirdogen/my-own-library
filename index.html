@@ -4,7 +4,59 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link href="css/normalize.css" type="text/css" rel="stylesheet" />
+    <link href="css/skeleton.css" type="text/css" rel="stylesheet" />
+    <!-- changed title -->
+    <title>My Own Library</title>
   </head>
-  <body></body>
+
+  <header>
+    <h1>My Online Library</h1>
+    <h2></h2>
+    <!-- what goes in h2 again? -->
+  </header>
+
+  <body>
+    <div id="selector">
+      <select name="Books or Music" id="dropdown">
+        <option value="none" selected="selected">-- choose one --</option>
+        <option value="Books">Books</option>
+        <option value="Music">Music</option>
+      </select>
+      <input type="text" placeholder="Title" />
+      <input type="text" placeholder="Who is the Author or Artist?" />
+      <!--Automatic Date Function?-->
+      <input type="text" placeholder="Date Added" />
+      <!-- added a class to button for click function -->
+      <button class="addBtn">Add to Library</button>
+    </div>
+    <div>
+      <div class="Library">
+        <h1>My Music</h1>
+        <select name="sort-by" id="dropdown">
+          <option value="none" selected="selected">-- sort by --</option>
+          <option value="title">Title</option>
+          <option value="artist">Artist</option>
+          <option value="date-added">Date Added</option>
+        </select>
+        <!-- <div>Saved Music Content</div> -->
+      </div>
+      <div class="Library">
+        <h1>My Books</h1>
+        <select name="sort-by" id="dropdown">
+          <option value="none" selected="selected">-- sort by --</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="date-added">Date Added</option>
+        </select>
+        <!-- <div>Saved Music Content</div> -->
+      </div>
+    </div>
+    <div id="content"></div>
+
+    <!-- added scripts for jQuery, jQuery UI and JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
 </html>
