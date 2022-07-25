@@ -9,6 +9,7 @@
     <!--added skeleton styleshheets-->
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/skeleton.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <header>
@@ -23,22 +24,27 @@
         <option value="Books">Books</option>
         <option value="Movies">Movies</option>
       </select>
-      <input type="text" placeholder="Title" />
+      <input id="input" type="text" placeholder="Title" />
       <input type="text" placeholder="Who is the Author or Director?" />
-      <!--Automatic Date Function?-->
+      <!-- Automatic Date Function? -->
       <input type="text" placeholder="Date Added" />
       <!-- added a class to button for click function -->
-      <button class="addBtn">Add to Library</button>
+      <button id="submit" class="addBtn btn btn-success">Add to Library</button>
     </div>
     <div>
       <div class="Library">
         <h1>My Movies</h1>
-        <select name="sort-by" id="dropdown">
-          <option value="none" selected="selected">-- sort by --</option>
-          <option value="title">Title</option>
-          <option value="director">Director</option>
-          <option value="date-added">Date Added</option>
-        </select>
+            <select name="sort-by" id="dropdown">
+            <option value="none" selected="selected">-- sort by --</option>
+            <option value="title">Title</option>
+            <option value="director">Director</option>
+            <option value="date-added">Date Added</option>
+          </select>
+          <div class="row">
+          <div id="output"></div>
+          <div id="btn-div"></div>
+        </div>
+      </div>
         <!-- <div>Saved Music Content</div> -->
       </div>
       <div class="Library">
