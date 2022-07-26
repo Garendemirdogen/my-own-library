@@ -19,9 +19,20 @@ var getBook = function (num) {
   });
 };
 
+// get movie function
+
+$(document).ready(function () {
+  function movieFinder() {
+    const apiKey = "db0633cb7d87ac12e2e4f675d677f8a5";
+    var title = $("input").val();
+    var movieAPI = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=${apiKey}`;
+  }
+});
 /* Example Book: 
     The Alchemist
     By - Paulo Coelho */
 
 // To call getBook function: uncomment the line below
-getBook(9780062315007);
+
+// getBook(9780062315007);
+
