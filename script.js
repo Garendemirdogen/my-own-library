@@ -18,7 +18,7 @@ var getBook = function (num) {
     });
   });
 };
-
+// button function fix?
 // get movie function
 
 $(document).ready(function () {
@@ -43,14 +43,11 @@ $(document).ready(function () {
         movieCard.attr("class", "card");
 
         //Get data
-        var title = $("<h3>").text('"' + response.Title + '"');
-        var rating = $("<p>").text("Rated: " + response.Rated);
-        var summary = $("<p>").text("Plot: " + response.Plot);
         var poster = $("<img>");
         poster.attr("src", response.Poster);
 
         //dump to divs
-        movieCard.append(title, rating, summary, poster);
+        movieCard.append(poster);
         movieData.prepend(movieCard);
       }
       // Modal to alert user that is not a valid movie title
@@ -96,6 +93,7 @@ $(document).ready(function () {
 
   makeButtons();
 });
+
 /* Example Book: 
     The Alchemist
     By - Paulo Coelho */
