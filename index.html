@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="css/normalize.css" type="text/css" rel="stylesheet" />
-    <link href="css/skeleton.css" type="text/css" rel="stylesheet" />
+
     <!-- changed title -->
     <title>My Own Library</title>
+    <!--added skeleton styleshheets-->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <header>
@@ -25,59 +28,48 @@
   </header>
 
   <body>
-
-    
-    <div class="container">
+  <div class="container">
       <div class ="row">
       <div class="twelve columns" style="background-color: #C68B59">
-        <div id="selector">
-
-          <div class="one-third column">
-            <select name="Books or Music" id="dropdown">
-              <option value="none" selected="selected">-- choose one --</option>
-              <option value="Books">Books</option>
-              <option value="Music">Music</option>
-            </select>
-          </div>
-
-          <div class="one-third column">
+    <div id="selector">
+    <div class="one-third column">
+      <select name="Books or Movies" id="dropdown">
+        <option value="none" selected="selected">-- choose one --</option>
+        <option value="Books">Books</option>
+        <option value="Movies">Movies</option>
+      </select>
+      </div>
+      <div class="one-third column">
             <input type="text" placeholder="Title" />
           </div>
-
-          <div class="one-third column">
-          <!-- added a class to button for click function -->
-            <button class="addBtn">Add to Library</button>
-          </div>
-
-        </div>
-      </div>
+            <div class="one-third column">
+      <!-- added a class to button for click function -->
+      <button id="submit" class="addBtn btn btn-success">Add to Library</button>
       </div>
     </div>
-  
+    </div>
+    </div>
+    </div>
 
-  
-    <!-- LIBRARY -->
-    <div class ="container">
-      <section class="Library">
-        <div class="row">        
+    <div class="container">
+      <section class="Librarys">
+        <div class="row">
           <div class="six columns" style="background-color: #D7B19D">
             <h1>My Movies</h1>
-              <option value="title">Title</option>
+                  <div id="output"></div>
+            <div id="btn-div"></div>
+            <!-- <div>Saved Movie Content</div> -->
           </div>
-       <!-- <div>Saved Movies Content</div> -->
 
           <div class="six columns" style="background-color: #D7B19D">
             <h1>My Books</h1>
-              <option value="title">Title</option>
+            <!-- <div>Saved Music Content</div> -->
           </div>
-        <!-- <div>Saved Books Content</div> -->
         </div>
       </section>
     </div>
-
-  
-
-    <div id="content"></div>
+    <!--commeneted out next line, since i wasnt sure what it did-->
+    <!-- <div id="content"></div>-->
 
     <!-- added scripts for jQuery, jQuery UI and JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
