@@ -30,29 +30,38 @@
       <!-- added a class to button for click function -->
       <button class="addBtn">Add to Library</button>
     </div>
-    <div>
-      <div class="Library">
-        <h1>My Movies</h1>
-        <select name="sort-by" id="dropdown">
-          <option value="none" selected="selected">-- sort by --</option>
-          <option value="title">Title</option>
-          <option value="director">Director</option>
-          <option value="date-added">Date Added</option>
-        </select>
-        <!-- <div>Saved Music Content</div> -->
-      </div>
-      <div class="Library">
-        <h1>My Books</h1>
-        <select name="sort-by" id="dropdown">
-          <option value="none" selected="selected">-- sort by --</option>
-          <option value="title">Title</option>
-          <option value="author">Author</option>
-          <option value="date-added">Date Added</option>
-        </select>
-        <!-- <div>Saved Music Content</div> -->
-      </div>
+
+
+    <div class="container">
+      <section class="Librarys">
+        <div class="row">
+          <div class="six columns" style="background-color: bisque">
+            <h1>My Music</h1>
+            <select name="sort-by" id="dropdown">
+              <option value="none" selected="selected">-- sort by --</option>
+              <option value="title">Title</option>
+              <option value="artist">Artist</option>
+              <option value="date-added">Date Added</option>
+            </select>
+            <!-- <div>Saved Music Content</div> -->
+          </div>
+
+          <div class="six columns" style="background-color: tan">
+            <h1>My Books</h1>
+            <select name="sort-by" id="dropdown">
+              <option value="none" selected="selected">-- sort by --</option>
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="date-added">Date Added</option>
+            </select>
+            <!-- <div>Saved Music Content</div> -->
+          </div>
+        </div>
+      </section>
+
     </div>
-    <div id="content"></div>
+    <!--commeneted out next line, since i wasnt sure what it did-->
+    <!-- <div id="content"></div>-->
 
     <!-- added scripts for jQuery, jQuery UI and JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
