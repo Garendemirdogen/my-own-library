@@ -18,7 +18,7 @@ var getBook = function (num) {
     });
   });
 };
-// button function?
+// button function fix?
 // get movie function
 
 $(document).ready(function () {
