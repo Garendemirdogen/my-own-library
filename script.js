@@ -5,19 +5,28 @@ $(".addBtn").on("click", function (event) {
   // alert("this was clicked!");
 });
 
-// function to get books
+// book function start 
 var getBook = function (num) {
   /* made a variable for the open library url 
     using ISBN-13 (International Standard Book Number) */
-  var openLibUrl = "https://openlibrary.org/isbn/" + num + ".json";
-
+  var openLibUrl = "https://openlibrary.org/api/books?bibkeys=ISBN:" + num + "&jscmd=data&format=json";
   // request information using fetch
   fetch(openLibUrl).then(function (response) {
-    response.json().then(function (data) {
-      console.log(data);
-    });
-  });
+      response.json().then(function (data) {
+        console.log(data);
+      })
+  })
 };
+// book function ends 
+
+// display books function start 
+var displayBook = function(num) {
+  // loop to get author 
+  for (var i = 0; i < num.length; i++) {
+
+  }
+};
+// display books function end
 
 // get movie function
 
@@ -30,7 +39,8 @@ $(document).ready(function () {
 });
 /* Example Book: 
     The Alchemist
-    By - Paulo Coelho */
+    By - Paulo Coelho 
+    ISBN-13 - 9780062315007 */
 
 // To call getBook function: uncomment the line below
 // getBook(9780062315007);
