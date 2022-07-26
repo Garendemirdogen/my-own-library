@@ -11,47 +11,72 @@
   </head>
 
   <header>
-    <h1>My Online Library</h1>
-    <h2></h2>
-    <!-- what goes in h2 again? -->
+    <div class ="container">
+      <div class="row">
+        <div class="twelve columns" style="background-color: #865439 ">
+          <strong>
+          <h1>My Online Library</h1>
+          </strong>
+        </div>
+        <h2></h2>
+        <!-- what goes in h2 again? -->
+      </div>
+    </div>
   </header>
 
   <body>
-    <div id="selector">
-      <select name="Books or Music" id="dropdown">
-        <option value="none" selected="selected">-- choose one --</option>
-        <option value="Books">Books</option>
-        <option value="Music">Music</option>
-      </select>
-      <input type="text" placeholder="Title" />
-      <input type="text" placeholder="Who is the Author or Artist?" />
-      <!--Automatic Date Function?-->
-      <input type="text" placeholder="Date Added" />
-      <!-- added a class to button for click function -->
-      <button class="addBtn">Add to Library</button>
-    </div>
-    <div>
-      <div class="Library">
-        <h1>My Music</h1>
-        <select name="sort-by" id="dropdown">
-          <option value="none" selected="selected">-- sort by --</option>
-          <option value="title">Title</option>
-          <option value="artist">Artist</option>
-          <option value="date-added">Date Added</option>
-        </select>
-        <!-- <div>Saved Music Content</div> -->
+
+    
+    <div class="container">
+      <div class ="row">
+      <div class="twelve columns" style="background-color: #C68B59">
+        <div id="selector">
+
+          <div class="one-third column">
+            <select name="Books or Music" id="dropdown">
+              <option value="none" selected="selected">-- choose one --</option>
+              <option value="Books">Books</option>
+              <option value="Music">Music</option>
+            </select>
+          </div>
+
+          <div class="one-third column">
+            <input type="text" placeholder="Title" />
+          </div>
+
+          <div class="one-third column">
+          <!-- added a class to button for click function -->
+            <button class="addBtn">Add to Library</button>
+          </div>
+
+        </div>
       </div>
-      <div class="Library">
-        <h1>My Books</h1>
-        <select name="sort-by" id="dropdown">
-          <option value="none" selected="selected">-- sort by --</option>
-          <option value="title">Title</option>
-          <option value="author">Author</option>
-          <option value="date-added">Date Added</option>
-        </select>
-        <!-- <div>Saved Music Content</div> -->
       </div>
     </div>
+  
+
+  
+    <!-- LIBRARY -->
+    <div class ="container">
+      <section class="Library">
+        <div class="row">        
+          <div class="six columns" style="background-color: #D7B19D">
+            <h1>My Movies</h1>
+              <option value="title">Title</option>
+          </div>
+       <!-- <div>Saved Movies Content</div> -->
+
+          <div class="six columns" style="background-color: #D7B19D">
+            <h1>My Books</h1>
+              <option value="title">Title</option>
+          </div>
+        <!-- <div>Saved Books Content</div> -->
+        </div>
+      </section>
+    </div>
+
+  
+
     <div id="content"></div>
 
     <!-- added scripts for jQuery, jQuery UI and JavaScript -->
@@ -60,3 +85,4 @@
     <script src="./script.js"></script>
   </body>
 </html>
+
