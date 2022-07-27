@@ -1,3 +1,5 @@
+let locationPlacement = null;
+
 // add to library button
 $(".addBtn").on("click", function (event) {
   event.preventDefault();
@@ -18,11 +20,13 @@ var getBook = function (num) {
     });
   });
 };
+
 // button function fix?
 // get movie function
 
 $(document).ready(function () {
   var movies = [];
+  let books = [];
 
   $(document).on("click", ".movie-btn", getData);
 
@@ -31,6 +35,21 @@ $(document).ready(function () {
     if ($(`[data-movie="${movie}"]`).length) {
       return;
     }
+
+    var array = [];
+    if (localStorage.getItem("movies")) {
+      JSON.parse(localStorage.getItem("movies")).map((item) =>
+        array.push(item)
+      );
+      array.push(movie);
+      localStorage.setItem("movies", JSON.stringify(array));
+    } else {
+      array.push();
+      console.log(array);
+      localStorage.setItem("movies", JSON.stringify(array));
+    }
+    console.log(localStorage.getItem("movies"));
+
     var queryURL =
       "https://www.omdbapi.com/?t=" + movie + "&type=movie&apikey=e7412d0b";
 
@@ -41,7 +60,7 @@ $(document).ready(function () {
       console.log(response);
 
       if (response.Response === "True") {
-        var movieData = $("#output");
+        var movieData = $("#output-mv");
         var movieCard = $("<div>");
         movieCard.attr("data-movie", movie);
         movieCard.attr("class", "card");
@@ -68,7 +87,8 @@ $(document).ready(function () {
   }
 
   function makeButtons() {
-    $("#btn-div").empty();
+    $("#btn-mv-div").empty();
+    $("#btn-bk-div").empty();
     for (var i = 0; i < movies.length; i++) {
       //make button, append to movies
       var a = $("<button>");
@@ -80,7 +100,20 @@ $(document).ready(function () {
       //add text
       a.text(movies[i]);
       //add button to div
-      $("#btn-div").append(a);
+      $("#btn-mv-div").append(a);
+    }
+    for (var i = 0; i < books.length; i++) {
+      //make button, append to movies
+      var a = $("<button>");
+      //add class
+      a.addClass("book-btn");
+      a.addClass("btn btn-primary");
+      //add name
+      a.attr("data-name", books[i]);
+      //add text
+      a.text(books[i]);
+      //add button to div
+      $("#btn-bk-div").append(a);
     }
   }
 
@@ -109,8 +142,14 @@ $(document).ready(function () {
 
   $("#submit").on("click", function () {
     //grab user input
-    var newMovie = $("#input").val().trim();
-    movies.push(newMovie);
+    var input = $("#input").val().trim();
+    if (locationPlacement === "Books") {
+      books.push(input);
+    } else {
+      movies.push(input);
+    }
+
+    console.log(books);
     console.log(movies);
     makeButtons();
 
@@ -118,13 +157,18 @@ $(document).ready(function () {
     $("#input").val("");
   });
 
+  $("#dropdown").on("change", function (event) {
+    locationPlacement = event.target.selectedOptions[0].value;
+  });
+
   makeButtons();
 });
 
+// console.log(localStorage.getItem("movies"));
 /* Example Book: 
     The Alchemist
     By - Paulo Coelho */
 
 // To call getBook function: uncomment the line below
 
-// getBook(9780062315007);
+getBook(9780062315007);

@@ -14,11 +14,11 @@
   </head>
 
   <header>
-    <div class ="container">
+    <div class="container">
       <div class="row">
-        <div class="twelve columns" style="background-color: #865439 ">
+        <div class="twelve columns" style="background-color: #865439">
           <strong>
-          <h1>My Online Library</h1>
+            <h1>My Online Library</h1>
           </strong>
         </div>
         <h2></h2>
@@ -28,19 +28,21 @@
   </header>
 
   <body>
-  <div class="container">
-      <div class ="row">
-      <div class="twelve columns" style="background-color: #C68B59">
-    <div id="selector">
-      <select name="Books or Movies" id="dropdown">
-        <option value="none" selected="selected">-- choose one --</option>
-        <option value="Books">Books</option>
-        <option value="Movies">Movies</option>
-      </select>
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns" style="background-color: #c68b59">
+          <div id="selector">
+            <select name="Books or Movies" id="dropdown">
+              <option value="none" selected="selected">-- choose one --</option>
+              <option value="Books">Books</option>
+              <option value="Movies">Movies</option>
+            </select>
             <input id="input" type="text" placeholder="Title" />
-      <!-- added a class to button for click function -->
-      <button id="submit" class="addBtn btn btn-success button">Add to Library</button>
-      </div>
+            <!-- added a class to button for click function -->
+            <button id="submit" class="addBtn btn btn-success button">
+              Add to Library
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -48,15 +50,18 @@
     <div class="container">
       <section class="Librarys">
         <div class="row">
-          <div class="six columns" style="background-color: #D7B19D">
+          <div class="six columns" style="background-color: #d7b19d">
             <h1>My Movies</h1>
-                  <div id="output"></div>
-            <div id="btn-div"></div>
+            <div id="btn-mv-div"></div>
+            <div id="output-mv"></div>
+
             <!-- <div>Saved Movie Content</div> -->
           </div>
 
-          <div class="six columns" style="background-color: #D7B19D">
+          <div class="six columns" style="background-color: #d7b19d">
             <h1>My Books</h1>
+            <div id="btn-bk-div"></div>
+            <div id="output-bk"></div>
             <!-- <div>Saved Music Content</div> -->
           </div>
         </div>
@@ -71,4 +76,3 @@
     <script src="./script.js"></script>
   </body>
 </html>
-
