@@ -36,6 +36,9 @@ $(document).ready(function () {
 
   function getData() {
     var movie = $(this).attr("data-name");
+    if ($(`[data-movie="${movie}"]`).length) {
+      return;
+    }
     var queryURL =
       "https://www.omdbapi.com/?t=" + movie + "&type=movie&apikey=e7412d0b";
 
@@ -48,6 +51,7 @@ $(document).ready(function () {
       if (response.Response === "True") {
         var movieData = $("#output");
         var movieCard = $("<div>");
+        movieCard.attr("data-movie", movie);
         movieCard.attr("class", "card");
 
         //Get data
@@ -88,6 +92,29 @@ $(document).ready(function () {
     }
   }
 
+  // var modal = document.querySelector(".modal");
+  // var closeButtons = document.querySelectorAll(".close-modal");
+  // // set open modal behaviour
+  // document.querySelector(".open-modal").addEventListener("click", function () {
+  //   modal.classList.toggle("modal-open");
+  // });
+  // // set close modal behaviour
+  // for (i = 0; i < closeButtons.length; ++i) {
+  //   closeButtons[i].addEventListener("click", function () {
+  //     modal.classList.toggle("modal-open");
+  //   });
+  // }
+  // // close modal if clicked outside content area
+  // document.querySelector(".modal-inner").addEventListener("click", function () {
+  //   modal.classList.toggle("modal-open");
+  // });
+  // // prevent modal inner from closing parent when clicked
+  // document
+  //   .querySelector(".modal-content")
+  //   .addEventListener("click", function (e) {
+  //     e.stopPropagation();
+  //   });
+
   $("#submit").on("click", function () {
     //grab user input
     var newMovie = $("#input").val().trim();
@@ -110,4 +137,3 @@ $(document).ready(function () {
 // To call getBook function: uncomment the line below
 
 // getBook(9780062315007);
-
