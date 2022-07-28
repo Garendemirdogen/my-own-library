@@ -1,36 +1,87 @@
-// add to library button
-$(".addBtn").on("click", function (event) {
-  event.preventDefault();
-  // this alert is a test to see if button works when clicked
-  // alert("this was clicked!");
-});
+let locationPlacement = null;
+
+var bookFormEl = document.querySelector("#book-form");
+var bookInputEl = document.querySelector("#input");
+var bookContainerEl = document.querySelector("#output-bk");
+var bookSearchTerm = document.querySelector("#book-search-term");
 
 // book function start 
-var getBook = function (num) {
+var getBook = function (book) {
   /* made a variable for the open library url 
     using ISBN-13 (International Standard Book Number) */
-  var openLibUrl = "https://openlibrary.org/api/books?bibkeys=ISBN:" + num + "&jscmd=data&format=json";
+  var openLibUrl = "https://openlibrary.org/search.json?q=" + book;
   // request information using fetch
-  fetch(openLibUrl).then(function (response) {
-      response.json().then(function (data) {
-        console.log(data);
-      })
+  fetch(openLibUrl)
+    .then(function (response) {
+      if(response.ok) {
+        console.log(response);
+        response.json().then(function (data) {
+          console.log(data);
+          displayBook(data, book);
+      });
+    } else {
+      alert("Error: Book Not Found");
+    }
   })
+  .catch(function(error) {
+    alert("Unable to connect to Open Library");
+  });
 };
 // book function ends 
 
 // display books function start 
-var displayBook = function(num) {
-  // loop to get author 
-  for (var i = 0; i < num.length; i++) {
+var displayBook = function(docs, searchTerm) {
+  if(docs.length === 0) {
+    bookContainerEl.textContent = "No Books Found.";
+    return;
+  }
 
+  bookSearchTerm.textContent = searchTerm;
+
+  // loop book docs
+  for (var i = 0; i < docs.length; i++) {
+    var bookCover = docs[0].cover_edition_key.value;
+    
+    var bookEl = document.createElement("div");
+    bookEl.id = "output-bk";
+
+    var titleEl = document.createElement("span");
+    titleEl.textContent = bookCover;
+
+    bookEl.appendChild(titleEl);
+
+    bookContainerEl.appendChild(bookEl);
   }
 };
+// display function ends
+
+// handler function starts
+var bookHandler = function(event) {
+  event.preventDefault();
+
+  var bookName = bookInputEl.value.trim();
+
+  if (bookName) {
+    getBook(bookName);
+
+    bookContainerEl.textContent = "";
+    bookInputEl.value = "";
+  } else {
+    alert("Please enter title of book");
+  }
+};
+// handler function ends
+
+// add event listener starts
+bookFormEl.addEventListener("submit", bookHandler);
+// event listener ends
+
 // button function fix?
 // get movie function
 
 $(document).ready(function () {
   var movies = [];
+  let books = [];
 
   $(document).on("click", ".movie-btn", getData);
 
@@ -39,6 +90,21 @@ $(document).ready(function () {
     if ($(`[data-movie="${movie}"]`).length) {
       return;
     }
+
+    var array = [];
+    if (localStorage.getItem("movies")) {
+      JSON.parse(localStorage.getItem("movies")).map((item) =>
+        array.push(item)
+      );
+      array.push(movie);
+      localStorage.setItem("movies", JSON.stringify(array));
+    } else {
+      array.push();
+      console.log(array);
+      localStorage.setItem("movies", JSON.stringify(array));
+    }
+    console.log(localStorage.getItem("movies"));
+
     var queryURL =
       "https://www.omdbapi.com/?t=" + movie + "&type=movie&apikey=e7412d0b";
 
@@ -49,7 +115,7 @@ $(document).ready(function () {
       console.log(response);
 
       if (response.Response === "True") {
-        var movieData = $("#output");
+        var movieData = $("#output-mv");
         var movieCard = $("<div>");
         movieCard.attr("data-movie", movie);
         movieCard.attr("class", "card");
@@ -76,7 +142,8 @@ $(document).ready(function () {
   }
 
   function makeButtons() {
-    $("#btn-div").empty();
+    $("#btn-mv-div").empty();
+    $("#btn-bk-div").empty();
     for (var i = 0; i < movies.length; i++) {
       //make button, append to movies
       var a = $("<button>");
@@ -88,7 +155,20 @@ $(document).ready(function () {
       //add text
       a.text(movies[i]);
       //add button to div
-      $("#btn-div").append(a);
+      $("#btn-mv-div").append(a);
+    }
+    for (var i = 0; i < books.length; i++) {
+      //make button, append to movies
+      var a = $("<button>");
+      //add class
+      a.addClass("book-btn");
+      a.addClass("btn btn-primary");
+      //add name
+      a.attr("data-name", books[i]);
+      //add text
+      a.text(books[i]);
+      //add button to div
+      $("#btn-bk-div").append(a);
     }
   }
 
@@ -117,8 +197,14 @@ $(document).ready(function () {
 
   $("#submit").on("click", function () {
     //grab user input
-    var newMovie = $("#input").val().trim();
-    movies.push(newMovie);
+    var input = $("#input").val().trim();
+    if (locationPlacement === "Books") {
+      books.push(input);
+    } else {
+      movies.push(input);
+    }
+
+    console.log(books);
     console.log(movies);
     makeButtons();
 
@@ -126,9 +212,14 @@ $(document).ready(function () {
     $("#input").val("");
   });
 
+  $("#dropdown").on("change", function (event) {
+    locationPlacement = event.target.selectedOptions[0].value;
+  });
+
   makeButtons();
 });
 
+// console.log(localStorage.getItem("movies"));
 /* Example Book: 
     The Alchemist
     By - Paulo Coelho 
