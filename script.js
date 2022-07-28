@@ -5,33 +5,34 @@ var bookInputEl = document.querySelector("#input");
 var bookContainerEl = document.querySelector("#output-bk");
 var bookSearchTerm = document.querySelector("#book-search-term");
 
-// book function start 
+// book function start
 var getBook = function (book) {
   /* made a variable for the open library url 
     using ISBN-13 (International Standard Book Number) */
   var openLibUrl = "https://openlibrary.org/search.json?q=" + book;
   // request information using fetch
-  fetch(openLibUrl)
-    .then(function (response) {
-      if(response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          console.log(data);
-          displayBook(data, book);
+  fetch(openLibUrl).then(function (response) {
+    if (response.ok) {
+      console.log(response);
+      response.json().then(function (data) {
+        console.log(data);
+        displayBook(data, book);
       });
-    } else {
-      alert("Error: Book Not Found");
     }
-  })
-  .catch(function(error) {
-    alert("Unable to connect to Open Library");
+    // } else {
+    //   alert("Error: Book Not Found");
+    // }
   });
+  // .catch(function (error) {
+  //   alert("Unable to connect to Open Library");
+  // });
 };
-// book function ends 
 
-// display books function start 
-var displayBook = function(docs, searchTerm) {
-  if(docs.length === 0) {
+// book function ends
+
+// display books function start
+var displayBook = function (docs, searchTerm) {
+  if (docs.length === 0) {
     bookContainerEl.textContent = "No Books Found.";
     return;
   }
@@ -41,7 +42,7 @@ var displayBook = function(docs, searchTerm) {
   // loop book docs
   for (var i = 0; i < docs.length; i++) {
     var bookCover = docs[0].cover_edition_key.value;
-    
+
     var bookEl = document.createElement("div");
     bookEl.id = "output-bk";
 
@@ -56,7 +57,7 @@ var displayBook = function(docs, searchTerm) {
 // display function ends
 
 // handler function starts
-var bookHandler = function(event) {
+var bookHandler = function (event) {
   event.preventDefault();
 
   var bookName = bookInputEl.value.trim();
@@ -66,9 +67,10 @@ var bookHandler = function(event) {
 
     bookContainerEl.textContent = "";
     bookInputEl.value = "";
-  } else {
-    alert("Please enter title of book");
   }
+  // else {
+  //   alert("Please enter title of book");
+  // }
 };
 // handler function ends
 
@@ -172,28 +174,30 @@ $(document).ready(function () {
     }
   }
 
-  // var modal = document.querySelector(".modal");
-  // var closeButtons = document.querySelectorAll(".close-modal");
-  // // set open modal behaviour
-  // document.querySelector(".open-modal").addEventListener("click", function () {
-  //   modal.classList.toggle("modal-open");
-  // });
-  // // set close modal behaviour
-  // for (i = 0; i < closeButtons.length; ++i) {
-  //   closeButtons[i].addEventListener("click", function () {
-  //     modal.classList.toggle("modal-open");
-  //   });
-  // }
-  // // close modal if clicked outside content area
-  // document.querySelector(".modal-inner").addEventListener("click", function () {
-  //   modal.classList.toggle("modal-open");
-  // });
-  // // prevent modal inner from closing parent when clicked
-  // document
-  //   .querySelector(".modal-content")
-  //   .addEventListener("click", function (e) {
-  //     e.stopPropagation();
-  //   });
+  // var modal = document.getElementById("myModal");
+
+  // // Get the button that opens the modal
+  // var btn = document.getElementById("myBtn");
+
+  // // Get the <span> element that closes the modal
+  // var span = document.getElementsByClassName("close")[0];
+
+  // // When the user clicks the button, open the modal
+  // btn.onclick = function () {
+  //   modal.style.display = "block";
+  // };
+
+  // // When the user clicks on <span> (x), close the modal
+  // span.onclick = function () {
+  //   modal.style.display = "none";
+  // };
+
+  // // When the user clicks anywhere outside of the modal, close it
+  // window.onclick = function (event) {
+  //   if (event.target == modal) {
+  //     modal.style.display = "none";
+  //   }
+  // };
 
   $("#submit").on("click", function () {
     //grab user input
