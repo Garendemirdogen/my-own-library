@@ -7,6 +7,7 @@ img {
   flex-wrap: wrap;
 }
 
+/* Modal Styling
 .modal {
   display: none;
   align-items: center;
@@ -42,3 +43,4 @@ img {
   background-color: black;
   opacity: 0.5;  
 }
+*/

@@ -64,7 +64,7 @@ var displayBook = function (docs, searchTerm) {
   // loop over book docs
   for (var i = 0; i < docs.length; i++) {
     // format book cover
-    var bookCover = docs[0].cover_edition_key;
+    var bookCover = docs[i].cover_edition_key;
 
     // div container for book 
     var bookEl = document.querySelector("div");
@@ -235,7 +235,7 @@ $(document).ready(function () {
   makeButtons();
 });
 
-// MODAL STARTS 
+/* MODAL STARTS 
 let modal;
 document.addEventListener("click", (e) => {
   if (e.target.className === "modal-open") {
@@ -269,7 +269,7 @@ const openModal = (modal) => {
       closeModal();
     }
   };
-// MODAL ENDS
+ MODAL ENDS */
 
 /* Example Book: 
     Title - "The Alchemist"
@@ -279,4 +279,5 @@ const openModal = (modal) => {
 /* To call getBook function: 
       Uncomment the line below. 
       Write one of the three: title, author or isbn. */
- // getBook("The Alchemist Paulo Coelho");
+ 
+      // getBook("The Alchemist Paulo Coelho");
