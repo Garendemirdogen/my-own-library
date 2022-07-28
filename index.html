@@ -42,11 +42,7 @@
 
               <!-- uncomment for original placement for this element: <input id="input" type="text" placeholder="Title" /> -->
               <!-- added a class to button for click function -->
-              <button
-                id="submit"
-                type="submit"
-                class="addBtn btn btn-success button"
-              >
+              <button id="submit" type="submit" class="addBtn btn btn-success button">
                 Add to Library
               </button>
             </div>
@@ -75,6 +71,23 @@
         </div>
       </section>
     </div>
+
+    <!-- MODAL STARTS-->
+    <div id="demo-modal" class="modal" role="dialog" tabindex="-1">
+      <div class="model-inner">
+        <div class="modal-header">
+          <h3>Error</h3>
+          <button class="modal-close" data-id="demo-modal" aria-label="Close">
+            &times;
+          </button>
+        </div>
+        <p>
+          Please enter correct information.
+        </p>
+      </div>
+    </div>
+    <button class="modal-open" data-id="demo-modal">Display Modal</button>
+    <!-- MODAL ENDS-->
 
     <!--commeneted out next line, since i wasnt sure what it did-->
     <!-- <div id="content"></div>-->

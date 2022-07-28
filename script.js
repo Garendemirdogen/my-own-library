@@ -5,6 +5,27 @@ var bookInputEl = document.querySelector("#input");
 var bookContainerEl = document.querySelector("#output-bk");
 var bookSearchTerm = document.querySelector("#book-search-term");
 
+// handler function starts
+var bookHandler = function (event) {
+  // prevent page from refreshing 
+  event.preventDefault();
+
+  // get value from input element 
+  var bookName = bookInputEl.value.trim();
+
+  if (bookName) {
+    getBook(bookName);
+
+    // clear old content 
+    bookContainerEl.textContent = "";
+    bookInputEl.value = "";
+  }
+  // else {
+  //   alert("Please enter title of book");
+  // }
+};
+// handler function ends
+
 // book function start
 var getBook = function (book) {
   /* made a variable for the open library url 
@@ -32,6 +53,7 @@ var getBook = function (book) {
 
 // display books function start
 var displayBook = function (docs, searchTerm) {
+  // check if api returned any repos
   if (docs.length === 0) {
     bookContainerEl.textContent = "No Books Found.";
     return;
@@ -39,40 +61,29 @@ var displayBook = function (docs, searchTerm) {
 
   bookSearchTerm.textContent = searchTerm;
 
-  // loop book docs
+  // loop over book docs
   for (var i = 0; i < docs.length; i++) {
-    var bookCover = docs[0].cover_edition_key.value;
+    // format book cover
+    var bookCover = docs[0].cover_edition_key;
 
-    var bookEl = document.createElement("div");
+    // div container for book 
+    var bookEl = document.querySelector("div");
     bookEl.id = "output-bk";
 
+    // span element to hold book name
     var titleEl = document.createElement("span");
     titleEl.textContent = bookCover;
 
+    // append to container
     bookEl.appendChild(titleEl);
 
+    // append container to the dom 
     bookContainerEl.appendChild(bookEl);
   }
 };
 // display function ends
 
-// handler function starts
-var bookHandler = function (event) {
-  event.preventDefault();
-
-  var bookName = bookInputEl.value.trim();
-
-  if (bookName) {
-    getBook(bookName);
-
-    bookContainerEl.textContent = "";
-    bookInputEl.value = "";
-  }
-  // else {
-  //   alert("Please enter title of book");
-  // }
-};
-// handler function ends
+// handler original spot
 
 // add event listener starts
 bookFormEl.addEventListener("submit", bookHandler);
@@ -199,6 +210,7 @@ $(document).ready(function () {
   //   }
   // };
 
+  // submit button 
   $("#submit").on("click", function () {
     //grab user input
     var input = $("#input").val().trim();
@@ -223,12 +235,48 @@ $(document).ready(function () {
   makeButtons();
 });
 
-// console.log(localStorage.getItem("movies"));
+// MODAL STARTS 
+let modal;
+document.addEventListener("click", (e) => {
+  if (e.target.className === "modal-open") {
+    modal = document.getElementById(e.target.dataset.id);
+    openModal(modal);
+  } else if (e.target.className === "modal-close") {
+    closeModal(modal);
+  } else {
+    return;
+  }
+});
+
+const openModal = (modal) => {
+    document.body.style.overflow = "auto";
+    modal.setAttribute("open", "true");
+    document.addEventListener("keydown", escClose);
+    let overlay = document.createElement("div");
+    overlay.id = "modal-overlay";
+    document.body.appendChild(overlay);
+  };
+
+  const closeModal = (modal) => {
+    document.body.style.overflow = "auto";
+    modal.removeAttribute("open");
+    document.removeEventListener("keydown", escClose);
+    document.body.removeChild(document.getElementById("modal-overlay"));
+  };
+
+  const escClose = (e) => {
+    if (e.keyCode == 27) {
+      closeModal();
+    }
+  };
+// MODAL ENDS
+
 /* Example Book: 
-    The Alchemist
-    By - Paulo Coelho 
+    Title - "The Alchemist"
+    Author - "Paulo Coelho"
     ISBN-13 - 9780062315007 */
 
-// To call getBook function: uncomment the line below
-
-// getBook(9780062315007);
+/* To call getBook function: 
+      Uncomment the line below. 
+      Write one of the three: title, author or isbn. */
+ // getBook("The Alchemist Paulo Coelho");
