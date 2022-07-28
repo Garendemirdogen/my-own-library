@@ -76,7 +76,6 @@ $(document).ready(function () {
       // Modal to alert user that is not a valid movie title
       // alert for now until I figure out the modals.
       else {
-        alert("ERROR: No results found for " + movie);
         var errorMovieIndex = movies.indexOf(movie);
         if (errorMovieIndex > -1) {
           movies.splice(errorMovieIndex, 1);
@@ -89,6 +88,7 @@ $(document).ready(function () {
   function makeButtons() {
     $("#btn-mv-div").empty();
     $("#btn-bk-div").empty();
+
     for (var i = 0; i < movies.length; i++) {
       //make button, append to movies
       var a = $("<button>");
@@ -160,7 +160,7 @@ $(document).ready(function () {
   $("#dropdown").on("change", function (event) {
     locationPlacement = event.target.selectedOptions[0].value;
   });
-
+  // getData(input);
   makeButtons();
 });
 
@@ -171,4 +171,4 @@ $(document).ready(function () {
 
 // To call getBook function: uncomment the line below
 
-getBook(9780062315007);
+// getBook(9780062315007);
