@@ -1,25 +1,80 @@
 let locationPlacement = null;
 
-// add to library button
-$(".addBtn").on("click", function (event) {
-  event.preventDefault();
-  // this alert is a test to see if button works when clicked
-  // alert("this was clicked!");
-});
+var bookFormEl = document.querySelector("#book-form");
+var bookInputEl = document.querySelector("#input");
+var bookContainerEl = document.querySelector("#output-bk");
+var bookSearchTerm = document.querySelector("#book-search-term");
 
-// function to get books
-var getBook = function (num) {
+// book function start 
+var getBook = function (book) {
   /* made a variable for the open library url 
     using ISBN-13 (International Standard Book Number) */
-  var openLibUrl = "https://openlibrary.org/isbn/" + num + ".json";
-
+  var openLibUrl = "https://openlibrary.org/search.json?q=" + book;
   // request information using fetch
-  fetch(openLibUrl).then(function (response) {
-    response.json().then(function (data) {
-      console.log(data);
-    });
+  fetch(openLibUrl)
+    .then(function (response) {
+      if(response.ok) {
+        console.log(response);
+        response.json().then(function (data) {
+          console.log(data);
+          displayBook(data, book);
+      });
+    } else {
+      alert("Error: Book Not Found");
+    }
+  })
+  .catch(function(error) {
+    alert("Unable to connect to Open Library");
   });
 };
+// book function ends 
+
+// display books function start 
+var displayBook = function(docs, searchTerm) {
+  if(docs.length === 0) {
+    bookContainerEl.textContent = "No Books Found.";
+    return;
+  }
+
+  bookSearchTerm.textContent = searchTerm;
+
+  // loop book docs
+  for (var i = 0; i < docs.length; i++) {
+    var bookCover = docs[0].cover_edition_key.value;
+    
+    var bookEl = document.createElement("div");
+    bookEl.id = "output-bk";
+
+    var titleEl = document.createElement("span");
+    titleEl.textContent = bookCover;
+
+    bookEl.appendChild(titleEl);
+
+    bookContainerEl.appendChild(bookEl);
+  }
+};
+// display function ends
+
+// handler function starts
+var bookHandler = function(event) {
+  event.preventDefault();
+
+  var bookName = bookInputEl.value.trim();
+
+  if (bookName) {
+    getBook(bookName);
+
+    bookContainerEl.textContent = "";
+    bookInputEl.value = "";
+  } else {
+    alert("Please enter title of book");
+  }
+};
+// handler function ends
+
+// add event listener starts
+bookFormEl.addEventListener("submit", bookHandler);
+// event listener ends
 
 // button function fix?
 // get movie function
@@ -167,7 +222,8 @@ $(document).ready(function () {
 // console.log(localStorage.getItem("movies"));
 /* Example Book: 
     The Alchemist
-    By - Paulo Coelho */
+    By - Paulo Coelho 
+    ISBN-13 - 9780062315007 */
 
 // To call getBook function: uncomment the line below
 
