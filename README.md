@@ -42,8 +42,8 @@ https://github.com/Garendemirdogen
 
 ## Github Repository
 
-https://github.com/Garendemirdogen/project-1.git
+https://github.com/Garendemirdogen/my-own-library.git
 
 ## Live URL Link
 
-https://garendemirdogen.github.io/project-1/
+https://garendemirdogen.github.io/my-own-library/
