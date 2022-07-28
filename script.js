@@ -232,3 +232,11 @@ $(document).ready(function () {
 // To call getBook function: uncomment the line below
 
 // getBook(9780062315007);
+
+//local storage
+
+//var selectorForm = document.getElementById('selector').value;
+//var inputForm = document.getElementById('input').value;
+
+//localStorage.setItem("selectorValue", selectorForm);
+//localStorage.setItem("inoutValue" inputForm);
