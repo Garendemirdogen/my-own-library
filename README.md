@@ -26,6 +26,8 @@ Jquery
 
 ## Screenshots of project
 
+![Screenshot-of-live-link](./images/Screenshot.png)
+
 ## Group Members
 
 Arturo Arce
