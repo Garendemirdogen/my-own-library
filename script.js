@@ -93,19 +93,19 @@ $(document).ready(function () {
       return;
     }
 
-    var array = [];
-    if (localStorage.getItem("movies")) {
-      JSON.parse(localStorage.getItem("movies")).map((item) =>
-        array.push(item)
-      );
-      array.push(movie);
-      localStorage.setItem("movies", JSON.stringify(array));
-    } else {
-      array.push();
-      console.log(array);
-      localStorage.setItem("movies", JSON.stringify(array));
-    }
-    console.log(localStorage.getItem("movies"));
+    //  // var array = [];
+    //   //if (localStorage.getItem("movies")) {
+    //   //  JSON.parse(localStorage.getItem("movies")).map((item) =>
+    //     array.push(item)
+    //     );
+    //     array.push(movie);
+    //     localStorage.setItem("movies", JSON.stringify(array));
+    //   } else {
+    //     array.push();
+    //     console.log(array);
+    //     localStorage.setItem("movies", JSON.stringify(array));
+    //   }
+    //   console.log(localStorage.getItem("movies"));
 
     var queryURL =
       "https://www.omdbapi.com/?t=" + movie + "&type=movie&apikey=e7412d0b";
@@ -201,19 +201,18 @@ $(document).ready(function () {
 
   $("#submit").on("click", function () {
     //grab user input
-    var input = $("#input").val().trim();
+    var input = $("#titleInput").val().trim();
     if (locationPlacement === "Books") {
       books.push(input);
     } else {
       movies.push(input);
     }
-
+    store();
     console.log(books);
     console.log(movies);
     makeButtons();
-
     //clear input
-    $("#input").val("");
+    $("#titleInput").val("");
   });
 
   $("#dropdown").on("change", function (event) {
@@ -223,7 +222,38 @@ $(document).ready(function () {
   makeButtons();
 });
 
-// console.log(localStorage.getItem("movies"));
+function store() {
+  var locPlace = document.getElementById("dropdown").value;
+  var titleNew = document.getElementById("titleInput").value;
+  // var counter = 0;
+  var favBM = {
+    locPlace: [],
+    titleNew: [],
+  };
+
+  var oldData = JSON.parse(localStorage.getItem("favBM"));
+  if (oldData) {
+    console.log(oldData);
+    oldData.locPlace.push(locPlace);
+    oldData.titleNew.push(titleNew);
+    window.localStorage.setItem("favBM", JSON.stringify(oldData));
+  } else {
+    console.log(oldData);
+
+    //localStorage.setItem(counter, locPlace, titleNew);
+    console.log(localStorage);
+    // counter++;
+    favBM.locPlace.push(locPlace);
+    favBM.titleNew.push(titleNew);
+    window.localStorage.setItem("favBM", JSON.stringify(favBM));
+  }
+}
+
+if(locationStorage.getItem()) 
+//for (var i = 0; i < localStorage.length; i++) {
+//console.log(localStorage.getItem(localStorage.favBM(i)));
+//}
+//console.log(localStorage.getItem("movies"));
 /* Example Book: 
     The Alchemist
     By - Paulo Coelho 
@@ -232,3 +262,11 @@ $(document).ready(function () {
 // To call getBook function: uncomment the line below
 
 // getBook(9780062315007);
+
+//local storage
+
+//var selectorForm = document.getElementById('selector').value;
+//var inputForm = document.getElementById('input').value;
+
+//localStorage.setItem("selectorValue", selectorForm);
+//localStorage.setItem("inoutValue" inputForm);
