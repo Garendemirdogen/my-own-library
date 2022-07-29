@@ -231,19 +231,25 @@ function store() {
     titleNew: [],
   };
 
-  window.localStorage.setItem("favBM", JSON.stringify(favBM));
   var oldData = JSON.parse(localStorage.getItem("favBM"));
-  console.log(oldData);
+  if (oldData) {
+    console.log(oldData);
+    oldData.locPlace.push(locPlace);
+    oldData.titleNew.push(titleNew);
+    window.localStorage.setItem("favBM", JSON.stringify(oldData));
+  } else {
+    console.log(oldData);
 
-  //oldData.push(locPlace, titleNew);
-  //console.log(oldData);
-
-  //localStorage.setItem(counter, locPlace, titleNew);
-  //console.log(localStorage);
-  //counter++;
-  //window.localStorage.getItem("favBM", JSON.parse(favBM));
+    //localStorage.setItem(counter, locPlace, titleNew);
+    console.log(localStorage);
+    // counter++;
+    favBM.locPlace.push(locPlace);
+    favBM.titleNew.push(titleNew);
+    window.localStorage.setItem("favBM", JSON.stringify(favBM));
+  }
 }
 
+if(locationStorage.getItem()) 
 //for (var i = 0; i < localStorage.length; i++) {
 //console.log(localStorage.getItem(localStorage.favBM(i)));
 //}
