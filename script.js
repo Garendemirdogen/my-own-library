@@ -19,13 +19,7 @@ var getBook = function (book) {
         displayBook(data, book);
       });
     }
-    // } else {
-    //   alert("Error: Book Not Found");
-    // }
   });
-  // .catch(function (error) {
-  //   alert("Unable to connect to Open Library");
-  // });
 };
 
 // book function ends
@@ -68,9 +62,6 @@ var bookHandler = function (event) {
     bookContainerEl.textContent = "";
     bookInputEl.value = "";
   }
-  // else {
-  //   alert("Please enter title of book");
-  // }
 };
 // handler function ends
 
@@ -78,7 +69,6 @@ var bookHandler = function (event) {
 bookFormEl.addEventListener("submit", bookHandler);
 // event listener ends
 
-// button function fix?
 // get movie function
 
 $(document).ready(function () {
@@ -92,20 +82,6 @@ $(document).ready(function () {
     if ($(`[data-movie="${movie}"]`).length) {
       return;
     }
-
-    //  // var array = [];
-    //   //if (localStorage.getItem("movies")) {
-    //   //  JSON.parse(localStorage.getItem("movies")).map((item) =>
-    //     array.push(item)
-    //     );
-    //     array.push(movie);
-    //     localStorage.setItem("movies", JSON.stringify(array));
-    //   } else {
-    //     array.push();
-    //     console.log(array);
-    //     localStorage.setItem("movies", JSON.stringify(array));
-    //   }
-    //   console.log(localStorage.getItem("movies"));
 
     var queryURL =
       "https://www.omdbapi.com/?t=" + movie + "&type=movie&apikey=e7412d0b";
@@ -174,31 +150,6 @@ $(document).ready(function () {
     }
   }
 
-  // var modal = document.getElementById("myModal");
-
-  // // Get the button that opens the modal
-  // var btn = document.getElementById("myBtn");
-
-  // // Get the <span> element that closes the modal
-  // var span = document.getElementsByClassName("close")[0];
-
-  // // When the user clicks the button, open the modal
-  // btn.onclick = function () {
-  //   modal.style.display = "block";
-  // };
-
-  // // When the user clicks on <span> (x), close the modal
-  // span.onclick = function () {
-  //   modal.style.display = "none";
-  // };
-
-  // // When the user clicks anywhere outside of the modal, close it
-  // window.onclick = function (event) {
-  //   if (event.target == modal) {
-  //     modal.style.display = "none";
-  //   }
-  // };
-
   $("#submit").on("click", function () {
     //grab user input
     var input = $("#titleInput").val().trim();
@@ -220,6 +171,21 @@ $(document).ready(function () {
   });
   // getData(input);
   makeButtons();
+  if (localStorage.getItem("favBM")) {
+    var savedBM = JSON.parse(localStorage.getItem("favBM"));
+    console.log(savedBM);
+    for (var i = 0; i < savedBM.locPlace.length; i++) {
+      if (savedBM.locPlace[i] == "Books") {
+        let bk = $("<button>");
+        bk.text(savedBM.titleNew[i]).attr("data-name", savedBM.titleNew[i]);
+        $("#btn-bk-div").append(bk);
+      } else if (savedBM.locPlace[i] == "Movies") {
+        let mv = $("<button>");
+        mv.text(savedBM.titleNew[i]).attr("data-name", savedBM.titleNew[i]);
+        $("#btn-mv-div").append(mv);
+      }
+    }
+  }
 });
 
 function store() {
@@ -240,20 +206,14 @@ function store() {
   } else {
     console.log(oldData);
 
-    //localStorage.setItem(counter, locPlace, titleNew);
     console.log(localStorage);
-    // counter++;
+
     favBM.locPlace.push(locPlace);
     favBM.titleNew.push(titleNew);
     window.localStorage.setItem("favBM", JSON.stringify(favBM));
   }
 }
 
-if(locationStorage.getItem()) 
-//for (var i = 0; i < localStorage.length; i++) {
-//console.log(localStorage.getItem(localStorage.favBM(i)));
-//}
-//console.log(localStorage.getItem("movies"));
 /* Example Book: 
     The Alchemist
     By - Paulo Coelho 
@@ -262,11 +222,3 @@ if(locationStorage.getItem())
 // To call getBook function: uncomment the line below
 
 // getBook(9780062315007);
-
-//local storage
-
-//var selectorForm = document.getElementById('selector').value;
-//var inputForm = document.getElementById('input').value;
-
-//localStorage.setItem("selectorValue", selectorForm);
-//localStorage.setItem("inoutValue" inputForm);
