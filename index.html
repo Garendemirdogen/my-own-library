@@ -16,41 +16,30 @@
   <header>
     <div class="container">
       <div class="row">
-        <div class="twelve columns" style="background-color: #865439">
-          <strong>
-            <h1>My Online Library</h1>
-          </strong>
+
+        <div class="twelve columns" style="background-color: #865439 ">
+          <strong><h1>MY ONLINE LIBRARY</h1></strong>
+
         </div>
-        <h2></h2>
-        <!-- what goes in h2 again? -->
       </div>
     </div>
   </header>
 
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="twelve columns" style="background-color: #c68b59">
-          <div id="selector">
-            <select name="Books or Movies" id="dropdown">
-              <option value="none" selected="selected">-- choose one --</option>
-              <option value="Books">Books</option>
-              <option value="Movies">Movies</option>
-            </select>
-            <div id="book-form">
-              <input id="titleInput" type="text" placeholder="Title" />
 
-              <!-- uncomment for original placement for this element: <input id="input" type="text" placeholder="Title" /> -->
-              <!-- added a class to button for click function -->
-              <button
-                id="submit"
-                type="submit"
-                class="addBtn btn btn-success button"
-              >
-                Add to Library
-              </button>
-            </div>
-          </div>
+  <div class="container">
+      <div class ="row">
+      <div class="twelve columns" style="background-color: #C68B59">
+    <div id="selector">
+      <select name="Books or Movies" id="dropdown" style="color: black">
+        <option value="none" selected="selected">-- choose one --</option>
+        <option value="Books">BOOK</option>
+        <option value="Movies">MOVIE</option>
+      </select>
+            <input id="titleInput" type="text" placeholder="Title" style="color: black"/>
+      <!-- added a class to button for click function -->
+      <button id="submit" class="addBtn btn btn-success button">Add to Library</button>
+      </div>
         </div>
       </div>
     </div>
@@ -58,18 +47,17 @@
     <div class="container">
       <section class="Librarys">
         <div class="row">
-          <div class="six columns" style="background-color: #d7b19d">
-            <h1>My Movies</h1>
-            <div id="btn-mv-div"></div>
-            <div id="output-mv" class="mlist"></div>
+
+          <div class="six columns" style="background-color: #865439">
+            <h1>MOVIES</h1>
+                  <div id="output"></div>
+            <div id="btn-div"></div>
             <!-- <div>Saved Movie Content</div> -->
           </div>
-          <div class="six columns" style="background-color: #d7b19d">
-            <h1>My Books</h1>
-            <h2><span id="book-search-term"></span></h2>
-            <div id="btn-bk-div"></div>
-            <div id="output-bk"></div>
-            <img src="" alt="" class="thumbnail" />
+
+          <div class="six columns" style="background-color: #865439">
+            <h1>BOOKS</h1>
+
             <!-- <div>Saved Music Content</div> -->
           </div>
         </div>

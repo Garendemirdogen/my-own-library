@@ -127,11 +127,11 @@ html {
 body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
-  font-weight: 400;
+  font-weight: 300;
 
   text-align: center;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #222; 
+  font-family: 'Courier New', Courier, monospace;
+  color: #F5E8E4; 
   padding: 10px;
   margin: 10px;
   border: 10px;
@@ -144,7 +144,7 @@ body {
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: 300; }
 h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
@@ -359,7 +359,9 @@ input,
 textarea,
 select,
 fieldset {
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+ }
 pre,
 blockquote,
 dl,
