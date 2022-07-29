@@ -66,7 +66,7 @@ var bookHandler = function (event) {
 // handler function ends
 
 // add event listener starts
-bookFormEl.addEventListener("submit", bookHandler);
+// bookFormEl.addEventListener("submit", bookHandler);
 // event listener ends
 
 // get movie function
