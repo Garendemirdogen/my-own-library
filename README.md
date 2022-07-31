@@ -15,7 +15,7 @@
 
 As a user:
 
-I want to be able to to make a list of my books and music so that I can always refer back to it later.
+I want to be able to to make a list of my books and movies so that I can always refer back to it later.
 
 ## Description
 
