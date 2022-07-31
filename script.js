@@ -1,74 +1,5 @@
 let locationPlacement = null;
 
-var bookFormEl = document.querySelector("#book-form");
-var bookInputEl = document.querySelector("#input");
-var bookContainerEl = document.querySelector("#output-bk");
-var bookSearchTerm = document.querySelector("#book-search-term");
-
-// book function start
-var getBook = function (book) {
-  /* made a variable for the open library url 
-    using ISBN-13 (International Standard Book Number) */
-  var openLibUrl = "https://openlibrary.org/search.json?q=" + book;
-  // request information using fetch
-  fetch(openLibUrl).then(function (response) {
-    if (response.ok) {
-      console.log(response);
-      response.json().then(function (data) {
-        console.log(data);
-        displayBook(data, book);
-      });
-    }
-  });
-};
-
-// book function ends
-
-// display books function start
-var displayBook = function (docs, searchTerm) {
-  if (docs.length === 0) {
-    bookContainerEl.textContent = "No Books Found.";
-    return;
-  }
-
-  bookSearchTerm.textContent = searchTerm;
-
-  // loop book docs
-  for (var i = 0; i < docs.length; i++) {
-    var bookCover = docs[0].cover_edition_key.value;
-
-    var bookEl = document.createElement("div");
-    bookEl.id = "output-bk";
-
-    var titleEl = document.createElement("span");
-    titleEl.textContent = bookCover;
-
-    bookEl.appendChild(titleEl);
-
-    bookContainerEl.appendChild(bookEl);
-  }
-};
-// display function ends
-
-// handler function starts
-var bookHandler = function (event) {
-  event.preventDefault();
-
-  var bookName = bookInputEl.value.trim();
-
-  if (bookName) {
-    getBook(bookName);
-
-    bookContainerEl.textContent = "";
-    bookInputEl.value = "";
-  }
-};
-// handler function ends
-
-// add event listener starts
-// bookFormEl.addEventListener("submit", bookHandler);
-// event listener ends
-
 // get movie function
 
 $(document).ready(function () {
@@ -76,15 +7,21 @@ $(document).ready(function () {
   let books = [];
 
   $(document).on("click", ".movie-btn", getData);
+  $(document).on("click", ".book-btn", getData);
 
   function getData() {
     var movie = $(this).attr("data-name");
     if ($(`[data-movie="${movie}"]`).length) {
       return;
     }
+    let book = $(this).attr("data-name");
+    if ($(`[data-book="${books}"]`).length) {
+      return;
+    }
 
     var queryURL =
       "https://www.omdbapi.com/?t=" + movie + "&type=movie&apikey=e7412d0b";
+    var bookQueryURL = "https://www.googleapis.com/books/v1/volumes?q=" + book;
 
     $.ajax({
       url: queryURL,
@@ -99,22 +36,36 @@ $(document).ready(function () {
         movieCard.attr("class", "card");
 
         //Get data
-        var poster = $("<img>");
-        poster.attr("src", response.Poster);
+        var moviePoster = $("<img>");
+        moviePoster.attr("src", response.Poster);
 
         //dump to divs
-        movieCard.append(poster);
+        movieCard.append(moviePoster);
         movieData.prepend(movieCard);
-      }
-      // Modal to alert user that is not a valid movie title
-      // alert for now until I figure out the modals.
-      else {
-        var errorMovieIndex = movies.indexOf(movie);
-        if (errorMovieIndex > -1) {
-          movies.splice(errorMovieIndex, 1);
-        }
-        makeButtons();
-      }
+      } else if (
+        $.ajax({
+          url: bookQueryURL,
+          method: "GET",
+        }).then(function (response) {
+          console.log(response);
+
+          if (response.Response === "True") {
+            var bookData = $("#output-bk");
+            var bookCard = $("<div>");
+            bookCard.attr("data-book", books);
+            bookCard.attr("class", "card");
+
+            //Get data
+            var bookPoster = $("<img>");
+            bookPoster.attr("src", response.Poster);
+
+            //dump to divs
+            bookCard.append(bookPoster);
+            bookData.prepend(bookCard);
+          }
+        })
+      );
+      makeButtons();
     });
   }
 
